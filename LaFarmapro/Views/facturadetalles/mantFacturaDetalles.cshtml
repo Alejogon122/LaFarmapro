@@ -1,0 +1,48 @@
+﻿
+@model IEnumerable<LaFarmapro.Models.viewModels.CListaFacturaDetalles>
+
+@{
+    ViewBag.Title = "Detalles de Facturas";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Detalles de Facturas</h2>
+        @Html.ActionLink("+ Agregar Detalle", "agregarFacturaDetalle", "FacturaDetalles", null, new { @class = "btn btn-success" })
+    </div>
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th># Detalle</th>
+                <th>Cantidad</th>
+                <th>Precio Unidad</th>
+                <th>Subtotal</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.idFacturaDetalle</td>
+                    <td>@item.cantidad</td>
+                    <td>&#8353;@item.precioUnidad.ToString("N2")</td>
+                    <td>&#8353;@item.subtotal.ToString("N2")</td>
+                    <td>
+                        @Html.ActionLink("Ver", "consultarFacturaDetalle", new { id = item.idFacturaDetalle }, new { @class = "btn btn-info btn-xs" })
+                        @Html.ActionLink("Editar", "actualizarFacturaDetalle", new { id = item.idFacturaDetalle }, new { @class = "btn btn-warning btn-xs" })
+                        @Html.ActionLink("Eliminar", "eliminarFacturaDetalle", new { id = item.idFacturaDetalle }, new { @class = "btn btn-danger btn-xs", onclick = "return confirm('¿Está seguro que desea eliminar este detalle?');" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">No hay detalles de facturas registrados.</div>
+    }
+</div>
+
+

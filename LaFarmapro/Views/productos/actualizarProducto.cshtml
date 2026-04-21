@@ -1,0 +1,74 @@
+﻿
+@model LaFarmapro.Models.viewModels.CActualizarProducto
+
+@{
+    ViewBag.Title = "Editar Producto";
+}
+
+<div class="container mt-4">
+    <h2>Editar Producto</h2>
+    <hr />
+
+    @using (Html.BeginForm("actualizarProducto", "Productos", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.idProducto)
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.idProducto, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.idProducto, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.idProducto, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.nombreProducto, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.nombreProducto, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.nombreProducto, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.descripcionProducto, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.TextAreaFor(m => m.descripcionProducto, new { @class = "form-control", rows = "3" })
+                    @Html.ValidationMessageFor(m => m.descripcionProducto, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.precioProducto, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.precioProducto, new { @class = "form-control", type = "number", step = "0.01", min = "0" })
+                    @Html.ValidationMessageFor(m => m.precioProducto, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.estadoProducto, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.DropDownListFor(m => m.estadoProducto,
+                        new SelectList(new[] {
+                            new { Value = "Activo", Text = "Activo" },
+                            new { Value = "Inactivo", Text = "Inactivo" }
+                        }, "Value", "Text"),
+                        new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.estadoProducto, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-6">
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    @Html.ActionLink("Cancelar", "mantProductos", null, new { @class = "btn btn-default" })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

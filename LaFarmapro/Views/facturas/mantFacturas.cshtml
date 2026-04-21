@@ -1,0 +1,55 @@
+﻿@model IEnumerable<LaFarmapro.Models.viewModels.CListaFacturas>
+
+@{
+    ViewBag.Title = "Mantenimiento de Facturas";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Facturas</h2>
+        @Html.ActionLink("+ Nueva Factura", "gestionarFactura", "Facturas", null, new { @class = "btn btn-success" })
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th># Factura</th>
+                <th>Fecha</th>
+                <th>Método de Pago</th>
+                <th>Total</th>
+                <th>ID Cliente</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.idFactura</td>
+                    <td>@item.fecha.ToString("dd/MM/yyyy")</td>
+                    <td>@item.metodoPago</td>
+                    <td>&#8353;@item.total.ToString("N2")</td>
+                    <td>@item.idCliente</td>
+                    <td>
+                        @Html.ActionLink("Gestionar", "editarFacturaCompleta", new { id = item.idFactura }, new { @class = "btn btn-primary btn-xs" })
+                        @Html.ActionLink("Ver", "consultarFactura", new { id = item.idFactura }, new { @class = "btn btn-info btn-xs" })
+                        @Html.ActionLink("Eliminar", "eliminarFactura", new { id = item.idFactura }, new { @class = "btn btn-danger btn-xs", onclick = "return confirm('¿Está seguro que desea eliminar esta factura y todos sus detalles?');" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">No hay facturas registradas. <a href="@Url.Action("gestionarFactura", "Facturas")">Crear la primera factura</a>.</div>
+    }
+</div>

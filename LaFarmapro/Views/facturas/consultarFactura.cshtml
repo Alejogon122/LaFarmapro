@@ -1,0 +1,36 @@
+﻿@model LaFarmapro.Models.viewModels.CListaFacturas
+
+@{
+    ViewBag.Title = "Detalle de Factura";
+}
+
+<div class="container mt-4">
+    <h2>Detalle de Factura #@Model.idFactura</h2>
+    <hr />
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>N° Factura</dt>
+                <dd>@Model.idFactura</dd>
+
+                <dt>Fecha</dt>
+                <dd>@Model.fecha.ToString("dd/MM/yyyy")</dd>
+
+                <dt>Método de Pago</dt>
+                <dd>@Model.metodoPago</dd>
+
+                <dt>Total</dt>
+                <dd>&#8353;@Model.total.ToString("N2")</dd>
+
+                <dt>ID Cliente</dt>
+                <dd>@Model.idCliente</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        @Html.ActionLink("Editar", "actualizarFactura", new { id = Model.idFactura }, new { @class = "btn btn-warning" })
+        @Html.ActionLink("Volver a la lista", "mantFacturas", null, new { @class = "btn btn-default" })
+    </div>
+</div>

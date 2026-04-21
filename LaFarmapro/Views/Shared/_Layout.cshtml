@@ -1,0 +1,386 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - La Farmacia</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --mint: #b8f0e0;
+            --mint-dark: #7dd9be;
+            --lavender: #d8d4f5;
+            --lavender-dark: #a89ee8;
+            --blush: #fad4e0;
+            --sky: #c2e8fb;
+            --cream: #fdf6ee;
+            --text-main: #3d3557;
+            --text-muted: #8a84a3;
+            --white: #ffffff;
+            --shadow-sm: 0 2px 12px rgba(100,80,160,.08);
+            --shadow-md: 0 6px 28px rgba(100,80,160,.13);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--cream);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+            /* ── DECORATIVE BLOBS ── */
+            body::before, body::after {
+                content: '';
+                position: fixed;
+                border-radius: 50%;
+                z-index: 0;
+                pointer-events: none;
+                opacity: .45;
+                filter: blur(70px);
+            }
+
+            body::before {
+                width: 420px;
+                height: 420px;
+                background: var(--lavender);
+                top: -100px;
+                right: -100px;
+            }
+
+            body::after {
+                width: 360px;
+                height: 360px;
+                background: var(--mint);
+                bottom: -80px;
+                left: -80px;
+            }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            background: rgba(255,255,255,.82) !important;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1.5px solid rgba(168,158,232,.2);
+            box-shadow: var(--shadow-sm);
+            padding: 0.6rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.55rem;
+            font-weight: 600;
+            color: var(--text-main) !important;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+            .navbar-brand::before {
+                content: '💊';
+                font-size: 1.3rem;
+            }
+
+        .nav-link {
+            color: var(--text-muted) !important;
+            font-weight: 600;
+            font-size: .92rem;
+            padding: 0.45rem 0.9rem !important;
+            border-radius: 30px;
+            transition: all .22s ease;
+            letter-spacing: .2px;
+        }
+
+            .nav-link:hover {
+                color: var(--text-main) !important;
+                background: var(--lavender);
+            }
+
+            /* Cerrar sesión / Iniciar sesión pill */
+            .nav-link.nav-session {
+                background: var(--mint);
+                color: var(--text-main) !important;
+                padding: 0.4rem 1.1rem !important;
+                margin-left: 6px;
+            }
+
+                .nav-link.nav-session:hover {
+                    background: var(--mint-dark);
+                }
+
+        .navbar-toggler {
+            border: 1.5px solid var(--lavender-dark);
+            border-radius: 10px;
+            padding: 5px 9px;
+        }
+
+        .navbar-toggler-icon {
+            filter: invert(35%) sepia(20%) saturate(600%) hue-rotate(220deg);
+        }
+
+        /* ── WELCOME BANNER ── */
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--lavender) 0%, var(--blush) 100%);
+            border-radius: 0 0 var(--radius) var(--radius);
+            padding: 0.7rem 1.5rem;
+            margin-bottom: 0.5rem;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            z-index: 1;
+        }
+
+            .welcome-banner h3 {
+                font-size: 1rem;
+                font-weight: 700;
+                color: var(--text-main);
+                margin: 0;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+                .welcome-banner h3::before {
+                    content: '👋';
+                    font-size: 1.1rem;
+                }
+
+            .welcome-banner small {
+                font-weight: 600;
+                color: var(--lavender-dark);
+                font-size: .82rem;
+                background: rgba(255,255,255,.55);
+                padding: 2px 10px;
+                border-radius: 20px;
+                margin-left: 6px;
+            }
+
+        /* ── MAIN CONTENT ── */
+        .body-content {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            padding-top: 1.6rem;
+            padding-bottom: 2rem;
+        }
+
+        /* Cards & Tables global polish */
+        .card {
+            border: none;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            background: var(--white);
+        }
+
+        .table {
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+            .table thead th {
+                background: var(--lavender);
+                color: var(--text-main);
+                font-weight: 700;
+                border: none;
+                font-size: .88rem;
+                letter-spacing: .3px;
+            }
+
+            .table tbody tr:hover {
+                background: #f5f2ff;
+            }
+
+            .table td, .table th {
+                border-color: #ede9f8;
+                vertical-align: middle;
+            }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--lavender-dark);
+            border-color: var(--lavender-dark);
+            color: var(--white);
+            border-radius: 30px;
+            font-weight: 700;
+            padding: .42rem 1.3rem;
+            transition: all .2s;
+        }
+
+            .btn-primary:hover {
+                background: #9286d6;
+                border-color: #9286d6;
+                box-shadow: 0 4px 14px rgba(168,158,232,.4);
+            }
+
+        .btn-success {
+            background: var(--mint-dark);
+            border-color: var(--mint-dark);
+            color: var(--text-main);
+            border-radius: 30px;
+            font-weight: 700;
+        }
+
+            .btn-success:hover {
+                background: #5ec9aa;
+                border-color: #5ec9aa;
+            }
+
+        .btn-danger {
+            border-radius: 30px;
+            font-weight: 700;
+        }
+
+        .btn-warning {
+            border-radius: 30px;
+            font-weight: 700;
+        }
+
+        .btn-info {
+            border-radius: 30px;
+            font-weight: 700;
+        }
+
+        /* Form controls */
+        .form-control, .form-select {
+            border-radius: 12px;
+            border: 1.5px solid #e0daf5;
+            font-family: 'Nunito', sans-serif;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+            .form-control:focus, .form-select:focus {
+                border-color: var(--lavender-dark);
+                box-shadow: 0 0 0 3px rgba(168,158,232,.2);
+            }
+
+        /* Headings inside pages */
+        h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-main);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center;
+            padding: 1.2rem 0 .8rem;
+            color: var(--text-muted);
+            font-size: .82rem;
+            font-weight: 600;
+            border-top: 1.5px solid #ede9f8;
+            margin-top: 2rem;
+        }
+
+            footer p {
+                margin: 0;
+            }
+
+                footer p::before {
+                    content: '💊 ';
+                }
+
+        /* ── RESPONSIVE ── */
+        @@media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 1.25rem;
+            }
+
+            .welcome-banner {
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── NAVBAR ── -->
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
+        <div class="container">
+            @Html.ActionLink("La Farmacia", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    title="Alternar navegación" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+
+                    <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+
+                    @if (Session["ROL"] != null)
+                    {
+                        @* ADMINISTRADOR ve todo *@
+                        if (Session["ROL"].ToString() == "ADMINISTRADOR")
+                        {
+                            <li>@Html.ActionLink("Productos", "mantProductos", "Productos", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Clientes", "mantClientes", "Clientes", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Facturas", "mantFacturas", "Facturas", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+
+                        @* VENDEDOR ve Clientes y Facturas *@
+                        if (Session["ROL"].ToString() == "VENDEDOR")
+                        {
+                            <li>@Html.ActionLink("Clientes", "mantClientes", "Clientes", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Facturas", "mantFacturas", "Facturas", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+
+                        @* CONTABILIDAD solo ve Facturas *@
+                        if (Session["ROL"].ToString() == "CONTABILIDAD")
+                        {
+                            <li>@Html.ActionLink("Facturas", "mantFacturas", "Facturas", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+
+                        <li>@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Login", new { area = "" }, new { @class = "nav-link nav-session" })</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Iniciar Sesión", "Login", "Login", new { area = "" }, new { @class = "nav-link nav-session" })</li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ── WELCOME BANNER ── -->
+    @if (Session["ROL"] != null)
+    {
+        <div class="welcome-banner">
+            <div class="container">
+                <h3>
+                    @Session["USER"].ToString()
+                    <small>@Session["ROL"].ToString()</small>
+                </h3>
+            </div>
+        </div>
+    }
+
+    <!-- ── BODY ── -->
+    <div class="container body-content">
+        @RenderBody()
+        <footer>
+            <p>&copy; @DateTime.Now.Year — La Farmacia</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+```

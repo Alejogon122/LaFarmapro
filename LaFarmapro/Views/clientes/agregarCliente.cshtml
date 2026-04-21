@@ -1,0 +1,57 @@
+﻿@model LaFarmapro.Models.viewModels.CAgregarCliente
+
+@{
+    ViewBag.Title = "Agregar Cliente";
+}
+
+<div class="container mt-4">
+    <h2>Agregar Cliente</h2>
+    <hr />
+
+    @using (Html.BeginForm("agregarCliente", "Clientes", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.identificacionCliente, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.identificacionCliente, new { @class = "form-control", placeholder = "Número de identificación" })
+                    @Html.ValidationMessageFor(m => m.identificacionCliente, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.nombreCliente, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.nombreCliente, new { @class = "form-control", placeholder = "Nombre" })
+                    @Html.ValidationMessageFor(m => m.nombreCliente, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.apellidoCliente, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.apellidoCliente, new { @class = "form-control", placeholder = "Apellido" })
+                    @Html.ValidationMessageFor(m => m.apellidoCliente, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.correoCliente, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.correoCliente, new { @class = "form-control", placeholder = "correo@ejemplo.com", type = "email" })
+                    @Html.ValidationMessageFor(m => m.correoCliente, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-6">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    @Html.ActionLink("Cancelar", "mantClientes", null, new { @class = "btn btn-default" })
+                </div>
+            </div>
+        </div>
+    }
+</div>

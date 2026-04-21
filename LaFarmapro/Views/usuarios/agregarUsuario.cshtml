@@ -1,0 +1,87 @@
+﻿
+@model LaFarmapro.Models.viewModels.CAgregarUsuario
+
+@{
+    ViewBag.Title = "Agregar Usuario";
+}
+
+<div class="container mt-4">
+    <h2>Agregar Usuario</h2>
+    <hr />
+
+    @using (Html.BeginForm("agregarUsuario", "Usuarios", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.identificacionUsuario, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.identificacionUsuario, new { @class = "form-control", placeholder = "Número de identificación" })
+                    @Html.ValidationMessageFor(m => m.identificacionUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.nombreUsuario, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.nombreUsuario, new { @class = "form-control", placeholder = "Nombre" })
+                    @Html.ValidationMessageFor(m => m.nombreUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.apellidoUsuario, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.apellidoUsuario, new { @class = "form-control", placeholder = "Apellido" })
+                    @Html.ValidationMessageFor(m => m.apellidoUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.correoUsuario, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.correoUsuario, new { @class = "form-control", placeholder = "correo@ejemplo.com", type = "email" })
+                    @Html.ValidationMessageFor(m => m.correoUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.tipoUsuario, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.DropDownListFor(m => m.tipoUsuario,
+                        new SelectList(new[] {
+                            new { Value = "ADMINISTRADOR", Text = "ADMINISTRADOR" },
+                            new { Value = "VENDEDOR", Text = "VENDEDOR" },
+                            new { Value = "CONTABILIDAD", Text = "CONTABILIDAD" }
+                        }, "Value", "Text"),
+                        "-- Seleccione --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.tipoUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.estadoUsuario, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.DropDownListFor(m => m.estadoUsuario,
+                        new SelectList(new[] {
+                            new { Value = "ACTIVO", Text = "ACTIVO" },
+                            new { Value = "INACTIVO", Text = "INACTIVO" }
+                        }, "Value", "Text"),
+                        "-- Seleccione --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.estadoUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-6">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    @Html.ActionLink("Cancelar", "mantUsuarios", null, new { @class = "btn btn-default" })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

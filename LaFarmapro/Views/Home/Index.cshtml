@@ -1,0 +1,160 @@
+﻿@{
+    ViewBag.Title = "Inicio - LaFarmapro";
+}
+
+<div class="container mt-4">
+    <div class="jumbotron p-4">
+        <h1 class="display-4">Bienvenido a LaFarma</h1>
+        <p class="lead">Gestión de clientes, productos y ventas para tu farmacia.</p>
+        <hr class="my-3" />
+        <p>Accede rápidamente a las secciones principales para administrar tu operación.</p>
+        <script src="https://cdn.jsdelivr.net/npm/sienna-accessibility@latest/dist/sienna-accessibility.umd.js" defer></script>
+        @Html.ActionLink("Agregar cliente", "agregarCliente", "Clientes", null, new { @class = "btn btn-success mr-2" })
+        @Html.ActionLink("Gestionar productos", "Index", "Productos", null, new { @class = "btn btn-primary mr-2" })
+        @Html.ActionLink("Registrar venta", "Index", "Ventas", null, new { @class = "btn btn-warning" })
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Clientes</h5>
+                    <p class="card-text">Registrar, actualizar y buscar clientes.</p>
+                    @Html.ActionLink("Abrir", "Index", "Clientes", null, new { @class = "btn btn-outline-primary btn-sm" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Productos</h5>
+                    <p class="card-text">Administrar inventario, precios y stock.</p>
+                    @Html.ActionLink("Abrir", "Index", "Productos", null, new { @class = "btn btn-outline-primary btn-sm" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            @{
+                ViewBag.Title = "Inicio - LaFarmapro";
+            }
+
+            <div class="container mt-4">
+                <div class="jumbotron p-4">
+                    <h1 class="display-4">Bienvenido a LaFarma</h1>
+                    <p class="lead">Gestión de clientes, productos y ventas para tu farmacia.</p>
+                    <hr class="my-3" />
+                    <p>Accede rápidamente a las secciones principales para administrar tu operación.</p>
+                    <script src="https://cdn.jsdelivr.net/npm/sienna-accessibility@latest/dist/sienna-accessibility.umd.js" defer></script>
+                    @Html.ActionLink("Agregar cliente", "agregarCliente", "Clientes", null, new { @class = "btn btn-success mr-2" })
+                    @Html.ActionLink("Gestionar productos", "Index", "Productos", null, new { @class = "btn btn-primary mr-2" })
+                    @Html.ActionLink("Registrar venta", "Index", "Ventas", null, new { @class = "btn btn-warning" })
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Clientes</h5>
+                                <p class="card-text">Registrar, actualizar y buscar clientes.</p>
+                                @Html.ActionLink("Abrir", "Index", "Clientes", null, new { @class = "btn btn-outline-primary btn-sm" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Productos</h5>
+                                <p class="card-text">Administrar inventario, precios y stock.</p>
+                                @Html.ActionLink("Abrir", "Index", "Productos", null, new { @class = "btn btn-outline-primary btn-sm" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Ventas</h5>
+                                <p class="card-text">Registrar ventas y generar comprobantes.</p>
+                                @Html.ActionLink("Abrir", "Index", "", null, new { @class = "btn btn-outline-primary btn-sm" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Reportes</h5>
+                                <p class="card-text">Informes de ventas, stock y clientes.</p>
+                                @Html.ActionLink("Abrir", "Index", "Reportes", null, new { @class = "btn btn-outline-primary btn-sm" })
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">Últimas acciones</div>
+                            <div class="card-body">
+                                <p class="text-muted">No hay actividad reciente. Aquí aparecerán las últimas ventas y cambios importantes.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">Atajos</div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">@Html.ActionLink("Nuevo cliente", "agregarCliente", "Clientes")</li>
+                                <li class="list-group-item">@Html.ActionLink("Nuevo producto", "Create", "Productos")</li>
+                                <li class="list-group-item">@Html.ActionLink("Nueva venta", "Create", "Ventas")</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Ventas</h5>
+                    <p class="card-text">Registrar ventas y generar comprobantes.</p>
+                    @Html.ActionLink("Abrir", "Index", "", null, new { @class = "btn btn-outline-primary btn-sm" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Reportes</h5>
+                    <p class="card-text">Informes de ventas, stock y clientes.</p>
+                    @Html.ActionLink("Abrir", "Index", "Reportes", null, new { @class = "btn btn-outline-primary btn-sm" })
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Últimas acciones</div>
+                <div class="card-body">
+                    <p class="text-muted">No hay actividad reciente. Aquí aparecerán las últimas ventas y cambios importantes.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">Atajos</div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">@Html.ActionLink("Nuevo cliente", "agregarCliente", "Clientes")</li>
+                    <li class="list-group-item">@Html.ActionLink("Nuevo producto", "Create", "Productos")</li>
+                    <li class="list-group-item">@Html.ActionLink("Nueva venta", "Create", "Ventas")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

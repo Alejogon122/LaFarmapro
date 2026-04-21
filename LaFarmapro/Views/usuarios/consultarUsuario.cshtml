@@ -1,0 +1,51 @@
+﻿
+@model LaFarmapro.Models.viewModels.CListaUsuario
+
+@{
+    ViewBag.Title = "Detalle del Usuario";
+}
+
+<div class="container mt-4">
+    <h2>Detalle del Usuario</h2>
+    <hr />
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>Identificación</dt>
+                <dd>@Model.identificacionUsuario</dd>
+
+                <dt>Nombre</dt>
+                <dd>@Model.nombreUsuario</dd>
+
+                <dt>Apellido</dt>
+                <dd>@Model.apellidoUsuario</dd>
+
+                <dt>Correo</dt>
+                <dd>@Model.correoUsuario</dd>
+
+                <dt>Tipo de Usuario</dt>
+                <dd><span class="label label-info">@Model.tipoUsuario</span></dd>
+
+                <dt>Estado</dt>
+                <dd>
+                    @if (Model.estadoUsuario == "Activo")
+                    {
+                        <span class="label label-success">@Model.estadoUsuario</span>
+                    }
+                    else
+                    {
+                        <span class="label label-danger">@Model.estadoUsuario</span>
+                    }
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        @Html.ActionLink("Editar", "actualizarUsuario", new { id = Model.idUsuario }, new { @class = "btn btn-warning" })
+        @Html.ActionLink("Volver a la lista", "mantUsuarios", null, new { @class = "btn btn-default" })
+    </div>
+</div>
+
+

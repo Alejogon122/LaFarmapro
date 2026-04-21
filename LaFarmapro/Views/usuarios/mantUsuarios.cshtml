@@ -1,0 +1,69 @@
+﻿
+@model IEnumerable<LaFarmapro.Models.viewModels.CListaUsuario>
+
+@{
+    ViewBag.Title = "Mantenimiento de Usuarios";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Usuarios</h2>
+        @Html.ActionLink("+ Agregar Usuario", "agregarUsuario", "Usuarios", null, new { @class = "btn btn-success" })
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Identificación</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo</th>
+                <th>Tipo</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.identificacionUsuario</td>
+                    <td>@item.nombreUsuario</td>
+                    <td>@item.apellidoUsuario</td>
+                    <td>@item.correoUsuario</td>
+                    <td><span class="label label-info">@item.tipoUsuario</span></td>
+                    <td>
+                        @if (item.estadoUsuario == "Activo")
+                        {
+                            <span class="label label-success">@item.estadoUsuario</span>
+                        }
+                        else
+                        {
+                            <span class="label label-danger">@item.estadoUsuario</span>
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Ver", "consultarUsuario", new { id = item.idUsuario }, new { @class = "btn btn-info btn-xs" })
+                        @Html.ActionLink("Editar", "actualizarUsuario", new { id = item.idUsuario }, new { @class = "btn btn-warning btn-xs" })
+                        @Html.ActionLink("Eliminar", "eliminarUsuario", new { id = item.idUsuario }, new { @class = "btn btn-danger btn-xs", onclick = "return confirm('¿Está seguro que desea eliminar este usuario?');" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">No hay usuarios registrados.</div>
+    }
+</div>
+
+

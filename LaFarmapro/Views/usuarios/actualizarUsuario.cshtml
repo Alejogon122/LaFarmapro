@@ -1,0 +1,90 @@
+﻿
+@model LaFarmapro.Models.viewModels.CActualizarUsuario
+
+@{
+    ViewBag.Title = "Editar Usuario";
+}
+
+<div class="container mt-4">
+    <h2>Editar Usuario</h2>
+    <hr />
+
+    @using (Html.BeginForm("actualizarUsuario", "Usuarios", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.idUsuario)
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.identificacionUsuario, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.identificacionUsuario, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.identificacionUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.nombreUsuario, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.nombreUsuario, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.nombreUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.apellidoUsuario, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.apellidoUsuario, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.apellidoUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.correoUsuario, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.correoUsuario, new { @class = "form-control", type = "email" })
+                    @Html.ValidationMessageFor(m => m.correoUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.tipoUsuario, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.DropDownListFor(m => m.tipoUsuario,
+                        new SelectList(new[] {
+                            new { Value = "Administrador", Text = "Administrador" },
+                            new { Value = "Cajero", Text = "Cajero" },
+                            new { Value = "Empleado", Text = "Empleado" }
+                        }, "Value", "Text"),
+                        new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.tipoUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.estadoUsuario, new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.DropDownListFor(m => m.estadoUsuario,
+                        new SelectList(new[] {
+                            new { Value = "Activo", Text = "Activo" },
+                            new { Value = "Inactivo", Text = "Inactivo" }
+                        }, "Value", "Text"),
+                        new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.estadoUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-6">
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    @Html.ActionLink("Cancelar", "mantUsuarios", null, new { @class = "btn btn-default" })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
